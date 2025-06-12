@@ -1,0 +1,786 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Vasu Katuboina | MERN Stack Developer</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary-color: #2563eb;
+      --secondary-color: #1e40af;
+      --accent-color: #3b82f6;
+      --dark-color: #1e293b;
+      --light-color: #f8fafc;
+      --text-color: #334155;
+    }
+    
+    body {
+      font-family: 'Poppins', sans-serif;
+      color: var(--text-color);
+      line-height: 1.6;
+    }
+    
+    html {
+      scroll-behavior: smooth;
+    }
+    
+    section {
+      padding: 80px 0;
+    }
+    
+    .navbar {
+      background-color: var(--dark-color) !important;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    }
+    
+    .navbar-brand {
+      font-weight: 700;
+      font-size: 24px;
+      color: white !important;
+    }
+    
+    .nav-link {
+      font-weight: 500;
+      color: rgba(255, 255, 255, 0.8) !important;
+      margin: 0 10px;
+      transition: all 0.3s ease;
+    }
+    
+    .nav-link:hover {
+      color: white !important;
+      transform: translateY(-2px);
+    }
+    
+    .hero {
+      background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+      color: white;
+      text-align: center;
+      padding: 120px 20px;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: url('https://images.unsplash.com/photo-1555066931-4365d14bab8c?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80') no-repeat center center/cover;
+      opacity: 0.1;
+      z-index: 0;
+    }
+    
+    .hero-content {
+      position: relative;
+      z-index: 1;
+    }
+    
+    .hero h1 {
+      font-weight: 700;
+      font-size: 3.5rem;
+      margin-bottom: 20px;
+      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+    
+    .hero p {
+      font-size: 1.5rem;
+      max-width: 700px;
+      margin: 0 auto 30px;
+    }
+    
+    .btn-custom {
+      background-color: white;
+      color: var(--primary-color);
+      border: none;
+      padding: 12px 30px;
+      font-weight: 600;
+      border-radius: 50px;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    }
+    
+    .btn-custom:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+      background-color: white;
+      color: var(--secondary-color);
+    }
+    
+    .btn-outline-custom {
+      border: 2px solid white;
+      color: white;
+      background: transparent;
+      padding: 10px 28px;
+      font-weight: 600;
+      border-radius: 50px;
+      transition: all 0.3s ease;
+    }
+    
+    .btn-outline-custom:hover {
+      background: white;
+      color: var(--primary-color);
+      transform: translateY(-3px);
+    }
+    
+    .section-title {
+      font-weight: 700;
+      color: var(--dark-color);
+      margin-bottom: 50px;
+      position: relative;
+      display: inline-block;
+    }
+    
+    .section-title::after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 0;
+      width: 50px;
+      height: 4px;
+      background: var(--primary-color);
+      border-radius: 2px;
+    }
+    
+    .about-img {
+      border-radius: 10px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+      transition: all 0.3s ease;
+      max-width: 100%;
+      height: auto;
+    }
+    
+    .about-img:hover {
+      transform: scale(1.02);
+    }
+    
+    .skill-item {
+      text-align: center;
+      padding: 30px 15px;
+      border-radius: 10px;
+      transition: all 0.3s ease;
+      margin-bottom: 20px;
+      background: white;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    }
+    
+    .skill-item:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+    }
+    
+    .skill-icon {
+      font-size: 3rem;
+      margin-bottom: 15px;
+      color: var(--primary-color);
+    }
+    
+    .project-card {
+      border: none;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+      transition: all 0.3s ease;
+      margin-bottom: 30px;
+      height: 100%;
+    }
+    
+    .project-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+    }
+    
+    .project-card img {
+      height: 200px;
+      object-fit: cover;
+    }
+    
+    .project-card .card-body {
+      padding: 25px;
+    }
+    
+    .project-card .card-title {
+      font-weight: 600;
+      margin-bottom: 15px;
+    }
+    
+    .project-link {
+      color: var(--primary-color);
+      font-weight: 500;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      transition: all 0.3s ease;
+    }
+    
+    .project-link:hover {
+      color: var(--secondary-color);
+      transform: translateX(5px);
+    }
+    
+    .project-link i {
+      margin-left: 5px;
+    }
+    
+    .contact-form {
+      background: white;
+      padding: 40px;
+      border-radius: 10px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+    }
+    
+    .form-control {
+      height: 50px;
+      border-radius: 5px;
+      border: 1px solid #e2e8f0;
+      padding: 10px 15px;
+      margin-bottom: 20px;
+    }
+    
+    .form-control:focus {
+      box-shadow: none;
+      border-color: var(--primary-color);
+    }
+    
+    textarea.form-control {
+      height: auto;
+    }
+    
+    .footer {
+      background: var(--dark-color);
+      color: white;
+      padding: 50px 0 20px;
+    }
+    
+    .social-icon {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.1);
+      color: white;
+      margin: 0 10px;
+      transition: all 0.3s ease;
+    }
+    
+    .social-icon:hover {
+      background: var(--primary-color);
+      transform: translateY(-5px);
+    }
+    
+    .back-to-top {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background: var(--primary-color);
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s ease;
+      z-index: 99;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    }
+    
+    .back-to-top.active {
+      opacity: 1;
+      visibility: visible;
+    }
+    
+    .back-to-top:hover {
+      background: var(--secondary-color);
+      transform: translateY(-5px);
+    }
+    
+    @media (max-width: 768px) {
+      .hero h1 {
+        font-size: 2.5rem;
+      }
+      
+      .hero p {
+        font-size: 1.2rem;
+      }
+      
+      section {
+        padding: 60px 0;
+      }
+    }
+  </style>
+</head>
+<body data-bs-spy="scroll" data-bs-target=".navbar">
+
+<nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+  <div class="container">
+    <a class="navbar-brand" href="#">Vasu Katuboina</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item"><a class="nav-link" href="#home">Home</a></li>
+        <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+        <li class="nav-item"><a class="nav-link" href="#skills">Skills</a></li>
+        <li class="nav-item"><a class="nav-link" href="#projects">Projects</a></li>
+        <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<section id="home" class="hero">
+  <div class="container hero-content">
+    <div class="row align-items-center">
+      <div class="col-lg-6 text-lg-start text-center">
+        <h1>Vasu Katuboina</h1>
+        <p class="lead">Full Stack Developer | MERN Stack Specialist</p>
+        <p>Building beautiful, responsive, and scalable web applications with modern technologies.</p>
+        <div class="mt-4">
+          <a href="#projects" class="btn btn-custom me-3">View My Work</a>
+          <a href="#contact" class="btn btn-outline-custom">Contact Me</a>
+        </div>
+      </div>
+      <div class="col-lg-6 text-center mt-lg-0 mt-5">
+        <img src="./MY_IMAGE.png" alt="Vasu Katuboina" class="about-img" style="max-width: 350px;">
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="about">
+  <div class="container">
+    <h2 class="section-title text-center">About Me</h2>
+    <div class="row align-items-center">
+      <div class="col-lg-5 text-center mb-lg-0 mb-4">
+        <img src="./MY_IMAGE.png" alt="Vasu Katuboina" class="about-img">
+      </div>
+      <div class="col-lg-7">
+        <h3 class="mb-3">Who am I?</h3>
+        <p>I'm a passionate Full Stack Developer with expertise in the MERN stack (MongoDB, Express.js, React.js, and Node.js). I specialize in building modern, responsive, and scalable web applications that deliver exceptional user experiences.</p>
+        <p>With a strong foundation in both frontend and backend technologies, I bring ideas to life through clean, efficient code and thoughtful design. I'm constantly learning and adapting to new technologies to stay at the forefront of web development.</p>
+        <div class="row mt-4">
+          <div class="col-md-6">
+            <ul class="list-unstyled">
+              <li class="mb-2"><strong>Name:</strong> Vasu Katuboina</li>
+              <li class="mb-2"><strong>Email:</strong> kvasu97015@gmail.com</li>
+              <li class="mb-2"><strong>From:</strong> India</li>
+            </ul>
+          </div>
+          <div class="col-md-6">
+            <ul class="list-unstyled">
+              <li class="mb-2"><strong>Experience:</strong> 3months</li>
+              <li class="mb-2"><strong>Freelance:</strong> Available</li>
+              <li class="mb-2"><strong>Degree:</strong> B.Tech in AI&ML</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="skills" class="bg-light">
+  <div class="container">
+    <h2 class="section-title text-center">My Skills</h2>
+    <p class="text-center mb-5">I've worked with a wide variety of technologies in the web development world. Here are some of my core skills:</p>
+    
+    <div class="row">
+      <div class="col-lg-4 mb-4">
+        <h4 class="text-center mb-4"><i class="fas fa-laptop-code me-2"></i>Frontend</h4>
+        <div class="row">
+          <div class="col-6 mb-4">
+            <div class="skill-item">
+              <i class="fab fa-html5 skill-icon"></i>
+              <h5>HTML5</h5>
+            </div>
+          </div>
+          <div class="col-6 mb-4">
+            <div class="skill-item">
+              <i class="fab fa-css3-alt skill-icon"></i>
+              <h5>CSS3</h5>
+            </div>
+          </div>
+          <div class="col-6 mb-4">
+            <div class="skill-item">
+              <i class="fab fa-js skill-icon"></i>
+              <h5>JavaScript</h5>
+            </div>
+          </div>
+          <div class="col-6 mb-4">
+            <div class="skill-item">
+              <i class="fab fa-react skill-icon"></i>
+              <h5>React.js</h5>
+            </div>
+          </div>
+          <div class="col-6 mb-4">
+            <div class="skill-item">
+              <i class="fab fa-bootstrap skill-icon"></i>
+              <h5>Bootstrap</h5>
+            </div>
+          </div>
+          <div class="col-6 mb-4">
+            <div class="skill-item">
+              <i class="fab fa-sass skill-icon"></i>
+              <h5>SASS</h5>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="col-lg-4 mb-4">
+        <h4 class="text-center mb-4"><i class="fas fa-server me-2"></i>Backend</h4>
+        <div class="row">
+          <div class="col-6 mb-4">
+            <div class="skill-item">
+              <i class="fab fa-node-js skill-icon"></i>
+              <h5>Node.js</h5>
+            </div>
+          </div>
+          <div class="col-6 mb-4">
+            <div class="skill-item">
+              <i class="fas fa-code skill-icon"></i>
+              <h5>Express.js</h5>
+            </div>
+          </div>
+          <div class="col-6 mb-4">
+            <div class="skill-item">
+              <i class="fas fa-database skill-icon"></i>
+              <h5>MongoDB</h5>
+            </div>
+          </div>
+          <div class="col-6 mb-4">
+            <div class="skill-item">
+              <i class="fas fa-database skill-icon"></i>
+              <h5>PostgreSQL</h5>
+            </div>
+          </div>
+          <div class="col-6 mb-4">
+            <div class="skill-item">
+              <i class="fas fa-fire skill-icon"></i>
+              <h5>Firebase</h5>
+            </div>
+          </div>
+          <div class="col-6 mb-4">
+            <div class="skill-item">
+              <i class="fas fa-code skill-icon"></i>
+              <h5>REST APIs</h5>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="col-lg-4 mb-4">
+        <h4 class="text-center mb-4"><i class="fas fa-tools me-2"></i>Others</h4>
+        <div class="row">
+          <div class="col-6 mb-4">
+            <div class="skill-item">
+              <i class="fab fa-git-alt skill-icon"></i>
+              <h5>Git</h5>
+            </div>
+          </div>
+          <div class="col-6 mb-4">
+            <div class="skill-item">
+              <i class="fab fa-github skill-icon"></i>
+              <h5>GitHub</h5>
+            </div>
+          </div>
+          <div class="col-6 mb-4">
+            <div class="skill-item">
+              <i class="fas fa-cloud skill-icon"></i>
+              <h5>Postman</h5>
+            </div>
+          </div>
+          <div class="col-6 mb-4">
+            <div class="skill-item">
+              <i class="fas fa-terminal skill-icon"></i>
+              <h5>Linux</h5>
+            </div>
+          </div>
+          <div class="col-6 mb-4">
+            <div class="skill-item">
+              <i class="fab fa-python skill-icon"></i>
+              <h5>Python</h5>
+            </div>
+          </div>
+          <div class="col-6 mb-4">
+            <div class="skill-item">
+              <i class="fas fa-shield-alt skill-icon"></i>
+              <h5>JWT Auth</h5>
+            </div>
+          </div>
+          <div class="col-6 mb-4">
+            <div class="skill-item">
+              <i class="fas fa-vial skill-icon"></i>
+              <h5>Cypress</h5>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="projects">
+  <div class="container">
+    <h2 class="section-title text-center">My Projects</h2>
+    <p class="text-center mb-5">Here are some of my recent projects. Click on any project to view more details.</p>
+    
+    <div class="row">
+      <div class="col-lg-4 col-md-6 mb-4">
+        <div class="project-card">
+          <img src="https://images.unsplash.com/photo-1611162616475-46b635cb6868?ixlib=rb-1.2.1&auto=format&fit=crop&w=1074&q=80" class="card-img-top" alt="Netflix Clone">
+          <div class="card-body">
+            <h5 class="card-title">Netflix Clone</h5>
+            <p class="card-text">A full-featured Netflix clone with user authentication, movie browsing, and video playback functionality.</p>
+            <div class="d-flex justify-content-between align-items-center">
+              <div>
+                <span class="badge bg-primary me-1">React</span>
+                <span class="badge bg-danger me-1">Firebase</span>
+                <span class="badge bg-success">TMDB API</span>
+              </div>
+              <a href="netflix-clone-details.html" class="project-link">View Details <i class="fas fa-arrow-right"></i></a>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="col-lg-4 col-md-6 mb-4">
+        <div class="project-card">
+          <img src="https://images.unsplash.com/photo-1611162616305-c69b3fa7fbe0?ixlib=rb-1.2.1&auto=format&fit=crop&w=1074&q=80" class="card-img-top" alt="E-commerce Platform">
+          <div class="card-body">
+            <h5 class="card-title">E-commerce Platform</h5>
+            <p class="card-text">Complete e-commerce solution with product catalog, shopping cart, user authentication, and payment processing.</p>
+            <div class="d-flex justify-content-between align-items-center">
+              <div>
+                <span class="badge bg-primary me-1">MERN</span>
+                <span class="badge bg-warning me-1">JWT</span>
+                <span class="badge bg-info">Stripe API</span>
+              </div>
+              <a href="ecommerce-details.html" class="project-link">View Details <i class="fas fa-arrow-right"></i></a>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="col-lg-4 col-md-6 mb-4">
+        <div class="project-card">
+          <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-1.2.1&auto=format&fit=crop&w=1170&q=80" class="card-img-top" alt="Task Management App">
+          <div class="card-body">
+            <h5 class="card-title">Task Management App</h5>
+            <p class="card-text">Productivity application for task management with drag-and-drop interface, team collaboration, and real-time updates.</p>
+            <div class="d-flex justify-content-between align-items-center">
+              <div>
+                <span class="badge bg-primary me-1">React</span>
+                <span class="badge bg-secondary me-1">Node.js</span>
+                <span class="badge bg-success">WebSocket</span>
+              </div>
+              <a href="task-app-details.html" class="project-link">View Details <i class="fas fa-arrow-right"></i></a>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="col-lg-4 col-md-6 mb-4">
+        <div class="project-card">
+          <img src="https://images.unsplash.com/photo-1534972195531-d756b9bfa9f2?ixlib=rb-1.2.1&auto=format&fit=crop&w=1170&q=80" class="card-img-top" alt="Social Media Dashboard">
+          <div class="card-body">
+            <h5 class="card-title">Social Media Dashboard</h5>
+            <p class="card-text">Analytics dashboard for social media metrics with data visualization, user management, and export functionality.</p>
+            <div class="d-flex justify-content-between align-items-center">
+              <div>
+                <span class="badge bg-primary me-1">React</span>
+                <span class="badge bg-info me-1">Chart.js</span>
+                <span class="badge bg-dark">MongoDB</span>
+              </div>
+              <a href="social-dashboard-details.html" class="project-link">View Details <i class="fas fa-arrow-right"></i></a>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="col-lg-4 col-md-6 mb-4">
+        <div class="project-card">
+          <img src="https://images.unsplash.com/photo-1551434678-e076c223a692?ixlib=rb-1.2.1&auto=format&fit=crop&w=1170&q=80" class="card-img-top" alt="Blog Platform">
+          <div class="card-body">
+            <h5 class="card-title">Blog Platform</h5>
+            <p class="card-text">Content management system for bloggers with rich text editor, SEO tools, and comment system.</p>
+            <div class="d-flex justify-content-between align-items-center">
+              <div>
+                <span class="badge bg-primary me-1">MERN</span>
+                <span class="badge bg-success me-1">Markdown</span>
+                <span class="badge bg-warning">SEO</span>
+              </div>
+              <a href="blog-platform-details.html" class="project-link">View Details <i class="fas fa-arrow-right"></i></a>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="col-lg-4 col-md-6 mb-4">
+        <div class="project-card">
+          <img src="https://images.unsplash.com/photo-1522542550221-31fd19575a2d?ixlib=rb-1.2.1&auto=format&fit=crop&w=1170&q=80" class="card-img-top" alt="Weather Application">
+          <div class="card-body">
+            <h5 class="card-title">Weather Application</h5>
+            <p class="card-text">Real-time weather forecasting app with location detection, 5-day forecast, and interactive maps.</p>
+            <div class="d-flex justify-content-between align-items-center">
+              <div>
+                <span class="badge bg-primary me-1">React</span>
+                <span class="badge bg-info me-1">OpenWeather API</span>
+                <span class="badge bg-danger">GeoLocation</span>
+              </div>
+              <a href="weather-app-details.html" class="project-link">View Details <i class="fas fa-arrow-right"></i></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="text-center mt-5">
+      <a href="https://github.com/Katuboinavasu" target="_blank" class="btn btn-primary btn-lg">View More on GitHub</a>
+    </div>
+  </div>
+</section>
+
+<section id="contact" class="bg-light">
+  <div class="container">
+    <h2 class="section-title text-center">Get In Touch</h2>
+    <p class="text-center mb-5">Have a project in mind or want to discuss potential opportunities? Feel free to reach out!</p>
+    
+    <div class="row">
+      <div class="col-lg-6 mb-5 mb-lg-0">
+        <div class="contact-form">
+          <form>
+            <div class="mb-3">
+              <input type="text" class="form-control" placeholder="Your Name" required>
+            </div>
+            <div class="mb-3">
+              <input type="email" class="form-control" placeholder="Your Email" required>
+            </div>
+            <div class="mb-3">
+              <input type="text" class="form-control" placeholder="Subject">
+            </div>
+            <div class="mb-3">
+              <textarea class="form-control" rows="5" placeholder="Your Message" required></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary w-100">Send Message</button>
+          </form>
+        </div>
+      </div>
+      <div class="col-lg-6">
+        <div class="ps-lg-5">
+          <h4 class="mb-4">Contact Information</h4>
+          <div class="d-flex align-items-start mb-4">
+            <div class="me-3">
+              <i class="fas fa-map-marker-alt fa-2x text-primary"></i>
+            </div>
+            <div>
+              <h5>Location</h5>
+              <p>Andhra Pradesh, India</p>
+            </div>
+          </div>
+          <div class="d-flex align-items-start mb-4">
+            <div class="me-3">
+              <i class="fas fa-envelope fa-2x text-primary"></i>
+            </div>
+            <div>
+              <h5>Email</h5>
+              <p>kvasu97015@gmail.com</p>
+            </div>
+          </div>
+          <div class="d-flex align-items-start mb-4">
+            <div class="me-3">
+              <i class="fas fa-phone-alt fa-2x text-primary"></i>
+            </div>
+            <div>
+              <h5>Phone</h5>
+              <p>+91 9701588330</p>
+            </div>
+          </div>
+          <div class="mt-5">
+            <h5 class="mb-3">Follow Me</h5>
+            <a href="https://www.linkedin.com/in/vasu-katuboina-049214278" target="_blank" class="social-icon"><i class="fab fa-linkedin-in"></i></a>
+            <a href="https://github.com/" target="_blank" class="social-icon"><i class="fab fa-github"></i></a>
+            <a href="https://twitter.com/" target="_blank" class="social-icon"><i class="fab fa-twitter"></i></a>
+            <a href="https://instagram.com/" target="_blank" class="social-icon"><i class="fab fa-instagram"></i></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="resume">
+  <div class="container text-center">
+    <h2 class="section-title">Download My Resume</h2>
+    <p class="mb-5">Want to know more about my professional journey? Download my detailed resume.</p>
+    <a href="vasu-katuboina-resume.pdf" class="btn btn-primary btn-lg" download>
+      <i class="fas fa-download me-2"></i> Download Resume
+    </a>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-6 text-lg-start text-center mb-3 mb-lg-0">
+        <h3 class="mb-3">Vasu Katuboina</h3>
+        <p>Full Stack Developer specializing in MERN stack applications.</p>
+      </div>
+      <div class="col-lg-6 text-lg-end text-center">
+        <a href="#home" class="social-icon"><i class="fas fa-home"></i></a>
+        <a href="#about" class="social-icon"><i class="fas fa-user"></i></a>
+        <a href="#skills" class="social-icon"><i class="fas fa-code"></i></a>
+        <a href="#projects" class="social-icon"><i class="fas fa-project-diagram"></i></a>
+        <a href="#contact" class="social-icon"><i class="fas fa-envelope"></i></a>
+      </div>
+    </div>
+    <hr class="my-4 bg-light opacity-25">
+    <div class="row">
+      <div class="col-md-6 text-md-start text-center mb-3 mb-md-0">
+        <p class="mb-0">&copy; 2025 Vasu Katuboina. All rights reserved.</p>
+      </div>
+      <div class="col-md-6 text-md-end text-center">
+        <p class="mb-0">Designed with <i class="fas fa-heart text-danger"></i> by Vasu Katuboina</p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<a href="#" class="back-to-top"><i class="fas fa-arrow-up"></i></a>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+  const backToTopButton = document.querySelector('.back-to-top');
+  
+  window.addEventListener('scroll', () => {
+    if (window.pageYOffset > 300) {
+      backToTopButton.classList.add('active');
+    } else {
+      backToTopButton.classList.remove('active');
+    }
+  });
+  
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function(e) {
+      e.preventDefault();
+      
+      document.querySelector(this.getAttribute('href')).scrollIntoView({
+        behavior: 'smooth'
+      });
+    });
+  });
+</script>
+
+</body>
+</html>
